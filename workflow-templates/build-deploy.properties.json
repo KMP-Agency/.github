@@ -1,0 +1,9 @@
+{
+  "name": "KMP Agency - Build and Deploy",
+  "description": "Build and deploy application to the cluster through Docker and Terraform",
+  "iconName": "logo",
+  "categories": [
+    "Terraform",
+    "Docker"
+  ]
+}
