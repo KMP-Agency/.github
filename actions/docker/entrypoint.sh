@@ -23,7 +23,7 @@ then
   # Use Docker `latest` tag convention
   [ "$VERSION" == "master" ] && VERSION=latest
 else
-  VERSION=$GITHUB_SHA::8
+  VERSION=$(echo $GITHUB_SHA | cut -c1-8)
 fi
 
 docker build $CONTEXT --file $DOCKERFILE --tag $IMAGE_ID:$VERSION
