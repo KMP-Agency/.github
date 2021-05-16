@@ -8,6 +8,8 @@ VERSION=$5
 DOCKERFILE=$6
 CONTEXT=$7
 
+echo "$USERNAME $PASSWORD $REGISTRY $IMAGE_NAME $VERSION $DOCKERFILE $CONTEXT"
+
 
 echo "Authenticating to docker registry"
 echo "$PASSWORD" | docker login $REGISTRY -u $USERNAME --password-stdin
