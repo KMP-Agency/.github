@@ -16,6 +16,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.username }}
+    - ${{ inputs.personnal-api-token }}
     - ${{ inputs.dockerfile }}
     - ${{ inputs.context }}
