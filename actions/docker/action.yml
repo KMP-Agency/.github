@@ -3,10 +3,21 @@ description: 'Build, push and deploy to container registry'
 inputs:
   username:
     description: 'Username to authenticate to the registry'
-    required: trueZz
-  personnal-api-token:
-    description: 'Personnal Github API Token to authenticate to the registry'
     required: true
+  password:
+    description: 'Password to authenticate to the registry'
+    required: true
+  registry:
+    description: 'Registry URL'
+    required: true
+    default: ghcr.io
+  image-name:
+    description: 'The image name'
+    required: true
+  version:
+    description: 'Image version'
+    required: true
+    default: latest
   dockerfile:
     description: 'Path of the Dockerfile'
     required: true
@@ -20,6 +31,9 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.username }}
-    - ${{ inputs.personnal-api-token }}
+    - ${{ inputs.password }}
+    - ${{ inputs.registry }}
+    - ${{ inputs.image-name }}
+    - ${{ inputs.version }}
     - ${{ inputs.dockerfile }}
     - ${{ inputs.context }}

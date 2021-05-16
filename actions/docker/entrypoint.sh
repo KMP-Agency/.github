@@ -1,6 +1,25 @@
 #!/bin/sh -l
 
-echo "Authenticating to docker registry"
-echo "$2" | docker login ghcr.io -u $1 --password-stdin
+USERNAME=$1
+PASSWORD=$2
+REGISTRY=$3
+IMAGE_NAME=$4
+VERSION=$5
+DOCKERFILE=$6
+CONTEXT=$7
 
-ls -la
+
+echo "Authenticating to docker registry"
+echo "$PASSWORD" | docker login $REGISTRY -u $USERNAME --password-stdin
+
+IMAGE_URL="$REGISTRY/$IMAGE_NAME"
+
+# Change all uppercase to lowercase
+IMAGE_ID=$(echo IMAGE_URL | tr '[A-Z]' '[a-z]')
+
+# Use Docker `latest` tag convention
+[ "$VERSION" == "master" ] && VERSION=latest
+
+docker build $CONTEXT --file $DOCKERFILE --tag $IMAGE_NAME
+docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+docker push $IMAGE_ID:$VERSION
