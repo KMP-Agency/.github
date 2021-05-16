@@ -1,6 +1,9 @@
 name: 'Docker'
 description: 'Build, push and deploy to container registry'
 inputs:
+  username:
+    description: 'Username to authenticate to the registry'
+    required: trueZz
   personnal-api-token:
     description: 'Personnal Github API Token to authenticate to the registry'
     required: true
@@ -16,7 +19,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ github.actor }}
+    - ${{ inputs.username }}
     - ${{ inputs.personnal-api-token }}
     - ${{ inputs.dockerfile }}
     - ${{ inputs.context }}
