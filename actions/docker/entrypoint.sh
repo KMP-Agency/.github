@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 PERSONNAL_API_TOKEN=$1
-DOCKERFILE=$3
+DOCKERFILE=$2
 CONTEXT=$3
 
 echo "$PERSONNAL_API_TOKEN" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
