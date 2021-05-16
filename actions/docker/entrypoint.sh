@@ -1,30 +1,24 @@
 #!/bin/sh -l
 
-echo $GITHUB_REF
+PERSONNAL_API_TOKEN=$1
+DOCKERFILE=$3
+CONTEXT=$3
 
-USERNAME=$1
-PASSWORD=$2
-REGISTRY=$3
-IMAGE_NAME=$4
-VERSION=$5
-DOCKERFILE=$6
-CONTEXT=$7
+echo "$PERSONNAL_API_TOKEN" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
-echo "$USERNAME $PASSWORD $REGISTRY $IMAGE_NAME $VERSION $DOCKERFILE $CONTEXT"
-
-
-echo "Authenticating to docker registry"
-echo "$PASSWORD" | docker login $REGISTRY -u $USERNAME --password-stdin
-
-IMAGE_URL="$REGISTRY/$IMAGE_NAME"
+IMAGE_ID=ghcr.io/$GITHUB_REPOSITORY
 
 # Change all uppercase to lowercase
-IMAGE_NAME=$(echo IMAGE_NAME | tr '[A-Z]' '[a-z]')
-IMAGE_URL=$(echo IMAGE_URL | tr '[A-Z]' '[a-z]')
+IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+# Strip git ref prefix from version
+VERSION=$(echo "$GITHUB_REF" | sed -e 's,.*/\(.*\),\1,')
+
+# Strip "v" prefix from tag name
+[[ "$GITHUB_REF" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
 
 # Use Docker `latest` tag convention
 [ "$VERSION" == "master" ] && VERSION=latest
 
-docker build $CONTEXT --file $DOCKERFILE --tag $IMAGE_NAME
-docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+docker build $CONTEXT --file $DOCKERFILE --tag $IMAGE_ID:$VERSION
 docker push $IMAGE_ID:$VERSION
