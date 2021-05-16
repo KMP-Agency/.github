@@ -17,7 +17,8 @@ echo "$PASSWORD" | docker login $REGISTRY -u $USERNAME --password-stdin
 IMAGE_URL="$REGISTRY/$IMAGE_NAME"
 
 # Change all uppercase to lowercase
-IMAGE_ID=$(echo IMAGE_URL | tr '[A-Z]' '[a-z]')
+IMAGE_NAME=$(echo IMAGE_NAME | tr '[A-Z]' '[a-z]')
+IMAGE_URL=$(echo IMAGE_URL | tr '[A-Z]' '[a-z]')
 
 # Use Docker `latest` tag convention
 [ "$VERSION" == "master" ] && VERSION=latest
