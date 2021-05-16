@@ -1,0 +1,22 @@
+name: 'Docker'
+description: 'Build, push and deploy to container registry'
+inputs:
+  personnal-api-token:
+    description: 'Personnal Github API Token to authenticate to the registry'
+    required: true
+  dockerfile:
+    description: 'Path of the Dockerfile'
+    required: true
+    default: Dockerfile
+  context:
+    description: 'Path of the context'
+    required: true
+    default: .
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ github.actor }}
+    - ${{ inputs.personnal-api-token }}
+    - ${{ inputs.dockerfile }}
+    - ${{ inputs.context }}
