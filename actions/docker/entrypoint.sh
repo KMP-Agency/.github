@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+echo $GITHUB_REF
+
 USERNAME=$1
 PASSWORD=$2
 REGISTRY=$3
