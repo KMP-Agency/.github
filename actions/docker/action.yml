@@ -12,6 +12,10 @@ inputs:
     description: 'Path of the context'
     required: true
     default: .
+  use-commit-hash:
+    description: 'Use commit hash as version instead of branch or tag name'
+    required: false
+    default: '0'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -19,3 +23,4 @@ runs:
     - ${{ inputs.personnal-api-token }}
     - ${{ inputs.dockerfile }}
     - ${{ inputs.context }}
+    - ${{ inputs.use-commit-hash }}
