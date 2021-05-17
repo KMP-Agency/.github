@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh -l
 
 VALUES=$1
 TERRAFORM_DIRECTORY=$2
