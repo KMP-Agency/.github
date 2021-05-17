@@ -5,6 +5,9 @@ VALUES=$2
 
 cd $TERRAFORM_DIRECTORY
 
+echo 'Initializing Terraform'
+terraform init
+
 echo 'Creating TFVars file'
 echo "$VALUES" >> terraform.tfvars.json
 
