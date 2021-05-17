@@ -1,0 +1,16 @@
+name: 'Environment variables parser'
+description: 'Build, push and deploy to container registry'
+inputs:
+  value:
+    description: 'The environment variables'
+    required: true
+  format:
+    description: 'The output format'
+    required: true
+    default: 'json'
+outputs:
+  variables:
+    description: 'The output variables'
+runs:
+  using: 'node12'
+  image: 'index.js'
