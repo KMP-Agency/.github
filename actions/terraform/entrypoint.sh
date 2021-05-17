@@ -2,8 +2,13 @@
 
 TERRAFORM_DIRECTORY=$1
 VALUES=$2
+KUBECONFIG=$3
 
 cd $TERRAFORM_DIRECTORY
+
+echo 'Creating Kubeconfig file'
+mkdir ~/.kube
+echo "$KUBECONFIG" >> ~/.kube/config
 
 echo 'Initializing Terraform'
 terraform init

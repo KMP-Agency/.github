@@ -8,6 +8,9 @@ inputs:
   values:
     description: 'The Terraform values in JSON'
     required: false
+  kubeconfig:
+    description: 'Kubeconfig file content'
+    required: false
 outputs:
   image:
     description: 'The image'
@@ -17,3 +20,4 @@ runs:
   args:
     - ${{ inputs.directory }}
     - ${{ inputs.values }}
+    - ${{ inputs.kubeconfig }}
