@@ -1,0 +1,29 @@
+name: 'Docker'
+description: 'Build, push and deploy to container registry'
+inputs:
+  personnal-api-token:
+    description: 'Password to authenticate to the registry'
+    required: true
+  dockerfile:
+    description: 'Path of the Dockerfile'
+    required: true
+    default: Dockerfile
+  context:
+    description: 'Path of the context'
+    required: true
+    default: .
+  use-commit-hash:
+    description: 'Use commit hash as version instead of branch or tag name'
+    required: false
+    default: '0'
+outputs:
+  image:
+    description: 'The image'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.personnal-api-token }}
+    - ${{ inputs.dockerfile }}
+    - ${{ inputs.context }}
+    - ${{ inputs.use-commit-hash }}

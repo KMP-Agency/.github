@@ -28,5 +28,3 @@ fi
 
 docker build $CONTEXT --file $DOCKERFILE --tag $IMAGE_ID:$VERSION
 docker push $IMAGE_ID:$VERSION
-
-echo "::set-output name=image::$IMAGE_ID:$VERSION"
