@@ -1,12 +1,17 @@
 #!/bin/sh -l
 
-VALUES=$1
-TERRAFORM_DIRECTORY=$2
+TERRAFORM_DIRECTORY=$1
+VALUES=$2
 
 cd $TERRAFORM_DIRECTORY
 
 echo 'Creating TFVars file'
 echo "$VALUES" >> terraform.tfvars.json
+
+echo 'Switching to workspace'
+VERSION=$(echo "$GITHUB_REF" | sed -e 's,.*/\(.*\),\1,')
+terraform workspace new $VERSION || true
+terraform workspace select $VERSION
 
 echo 'Testing format'
 terraform fmt -check
