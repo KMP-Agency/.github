@@ -16,6 +16,9 @@ inputs:
     description: 'Use commit hash as version instead of branch or tag name'
     required: false
     default: '0'
+outputs:
+  image:
+    description: 'The output image url'
 runs:
   using: 'docker'
   image: 'Dockerfile'
