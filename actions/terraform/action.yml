@@ -6,7 +6,7 @@ inputs:
     required: false
     default: ./.terraform
   values:
-    description: 'The Terraform values per branch'
+    description: 'The Terraform values in JSON'
     required: false
 outputs:
   image:
