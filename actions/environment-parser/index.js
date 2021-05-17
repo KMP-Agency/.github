@@ -25,6 +25,7 @@ try {
         output = _.merge(output, value[key])
     }
 
+    console.log('Generated output', output);
     core.setOutput('variables', output);
 } catch (error) {
     core.setFailed(error);
