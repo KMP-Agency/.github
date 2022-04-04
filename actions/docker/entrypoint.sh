@@ -4,10 +4,16 @@ PERSONNAL_API_TOKEN=$1
 DOCKERFILE=$2
 CONTEXT=$3
 USE_COMMIT_HASH=$4
+PREFIX=$5
 
 echo "$PERSONNAL_API_TOKEN" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
 IMAGE_ID=ghcr.io/$GITHUB_REPOSITORY
+
+if [$PREFIX -ne '' ]
+then
+  IMAGE_ID="$IMAGE_ID/$PREFIX"
+fi
 
 # Change all uppercase to lowercase
 IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')

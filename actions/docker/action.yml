@@ -16,6 +16,10 @@ inputs:
     description: 'Use commit hash as version instead of branch or tag name'
     required: false
     default: '0'
+  prefix:
+    description: 'Add prefix'
+    required: false
+    default: ''
 outputs:
   image:
     description: 'The output image url'
@@ -27,3 +31,4 @@ runs:
     - ${{ inputs.dockerfile }}
     - ${{ inputs.context }}
     - ${{ inputs.use-commit-hash }}
+    - ${{ inputs.prefix }}
