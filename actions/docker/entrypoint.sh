@@ -15,6 +15,8 @@ then
   IMAGE_ID="$IMAGE_ID/$PREFIX"
 fi
 
+echo $IMAGE_ID
+
 # Change all uppercase to lowercase
 IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
