@@ -10,9 +10,9 @@ echo "$PERSONNAL_API_TOKEN" | docker login ghcr.io -u $GITHUB_ACTOR --password-s
 
 IMAGE_ID=ghcr.io/$GITHUB_REPOSITORY
 
-if [$PREFIX -ne '' ]
+if [ "$PREFIX" != '' ]
 then
-  IMAGE_ID="$IMAGE_ID/$PREFIX"
+  IMAGE_ID=$IMAGE_ID/$PREFIX
 fi
 
 echo $IMAGE_ID
